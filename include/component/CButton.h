@@ -31,13 +31,14 @@ public:
     ~CButton() = default;
 
     void set_default(){
-
+        set_background(244,244,244,255);
+        set_size({100,40});
     }
     void draw(SDL_Renderer *ren) override{
         if(!is_drawed()){
             TTF_Font* font_r = TTF_OpenFont(font.get_font().c_str(), 128);
 
-            SDL_Surface* surfaceMessage = TTF_RenderText_Blended(font_r, button_text.c_str(), font.get_font_color());
+            SDL_Surface* surfaceMessage = TTF_RenderText_Blended(font_r, button_text.c_str(), font.get_color());
             set_tex_CUI(SDL_CreateTextureFromSurface(ren, surfaceMessage));
             SDL_FreeSurface(surfaceMessage);
             TTF_CloseFont(font_r);

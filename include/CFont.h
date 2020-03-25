@@ -19,7 +19,8 @@ public:
     std::string get_font(){return font_file;};
     void set_font(std::string& font_file_t){font_file = font_file_t;};
 
-    SDL_Color get_font_color(){return font_color;};
+    void set_color(SDL_Color color){ font_color = color;};
+    SDL_Color get_color(){return font_color;};
 
 };
 

@@ -10,6 +10,6 @@
 class AbsoluteLayout : public WindowLayout{
 
 public:
-    void set_size(std::vector<CComponent*> component_list, SDL_Rect *coords) override;
+    void set_size(std::vector<CComponent*> component_list, CComponent* parent_panel) override;
 };
 #endif //WINDOWMANAGER_ABSOLUTE_LAYOUT_H

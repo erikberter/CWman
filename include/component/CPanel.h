@@ -33,28 +33,22 @@ public:
         dims->w = width;
     }
 
-    void input() override{
-        for(auto& c : component_list)
-            c->input();
-    }
-    void update() override{
-        for(auto& c : component_list)
-            c->update();
-    }
+    void input() override{ for(auto& c : component_list) c->input(); }
+    void update() override{ for(auto& c : component_list) c->update(); }
     void draw(SDL_Renderer *ren) override{
         draw_CUI(ren);
         for(auto& c : component_list){
-            if(!c->visible)
-                continue;
+            if(!c->visible) continue;
             c->draw(ren);
         }
-        if(!updated){
-            panel_layout->set_size(component_list, get_dst());
+        if(!updated)
+            panel_layout->set_size(component_list, this),
             updated = !updated;
-        }
+
     }
 
     void add(CComponent* component){
+        component->set_parent(this);
         component_list.emplace_back(component);
         update_layout();
     }
@@ -66,8 +60,20 @@ public:
 
     void update_layout() override{
         updated = false;
-        panel_layout->set_size(component_list, get_dst());
+        panel_layout->set_size(component_list, this);
     }
+
+    CComponent* get_component_by_id(std::string id){
+
+        for(auto c : component_list){
+            if(c->get_id()==id) return c;
+            if(c->is_container()){
+                CComponent *ret = static_cast<CPanel*>(c)->get_component_by_id(id);
+                if(ret!= nullptr) return ret;
+            }
+        }
+        return nullptr;
+    };
 };
 
 #endif //WINDOWMANAGER_PANEL_COMPONENT_H

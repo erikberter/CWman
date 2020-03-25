@@ -11,37 +11,36 @@ VerticalFlowLayout::VerticalFlowLayout(){
     h_margin = 10;
 }
 
-void VerticalFlowLayout::set_size(std::vector<CComponent*> component_list, SDL_Rect* coords){
-    int act_pos_x = coords->x+h_margin;
-    int act_pos_y = coords->y;
+void VerticalFlowLayout::set_size(std::vector<CComponent*> component_list, CComponent* parent_panel){
+    Position act_pos = parent_panel->get_pos();
+    act_pos.x += h_margin;
+
     int act_width = 0;
     int act_height = 0;
+
     for(auto& c : component_list){
         //std::cout << c->get_id() << std::endl;
-        act_pos_y+=v_gap;
+        act_pos.y +=v_gap;
 
-        c->get_dst()->x = act_pos_x;
-        c->get_dst()->y = act_pos_y;
+        c->set_pos(act_pos);
 
         if(c->is_container())
             c->update_layout();
 
-        /*if(act_pos_y+c->get_dst()->h >= coords->y+coords->h ||
-           coords->x+c->get_dst()->w >= coords->x + coords->w){
-            //std::cout << " GOALAL " << c->get_id() << ": " << std::endl;
-            //std::cout << "ACT =" << act_pos_x << ":" << act_pos_y << std::endl;
-            //std::cout << "coords=" << coords->x << ":" << coords->y << ":" << coords->h << ":" << coords->w << std::endl;
-            //std::cout << "comps=" << c->get_dst()->x << ":" << c->get_dst()->y << ":" << c->get_dst()->h << ":" << c->get_dst()->w << std::endl;
-            c->visible = false;
-            break;
-        }*/
-
         act_width = std::max(2*h_margin + c->get_dst()->w,act_width);
-        act_pos_y += c->get_dst()->h;
+        act_pos.y += c->get_dst()->h;
 
     }
-    act_height = act_pos_y+v_gap - coords->y;
-    coords->h = std::max(act_height,coords->h);
-    coords->w = std::max(act_width,coords->w);
+    act_height = act_pos.y+v_gap - parent_panel->get_pos().y;
+    Dimension parent_size = parent_panel->get_size();
+    if(parent_panel->is_resizable())
+        parent_panel->set_size(
+            {std::max(act_width,parent_size.w),
+             std::max(act_height,parent_size.h)});
+
+    for(auto& c : component_list){
+        Dimension c_size = c->get_size();
+        c->set_size({act_width-2*h_margin,c_size.h});
+    }
 
 }

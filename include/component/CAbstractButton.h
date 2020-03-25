@@ -24,41 +24,26 @@ private:
     // Component Render
 
 public:
-    bool is_pressed = false;
+    bool pressed = false;
 
     CAbstractButton() : CComponent() {};
 
-    CAbstractButton(int pos_x, int pos_y) : CComponent(), is_pressed{false}{};
+    CAbstractButton(int pos_x, int pos_y) : CComponent(), pressed{false}{};
 
     ~CAbstractButton() = default;
 
     void input() override{
-        if(is_pressed) return;
         SDL_PumpEvents();
-        if(SDL_GetMouseState(NULL,NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)){
-            int x, y;
-            SDL_GetMouseState(&x, &y);
-            SDL_Rect *coords = get_dst();
-            if (coords->x < x && coords->x + coords->w > x && coords->y < y && coords->y + coords->h > y){
-                is_pressed = true;
-                button_temp = 3;
-                SDL_Color bg_color = get_background_color();
-                set_background(SDL_Color_dsp(bg_color,-30));
+        int x,y;
+        if(SDL_GetMouseState(&x,&y) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+            if (is_inside_rect(get_dst(), x, y)) set_pressed(true);
+        }else if(pressed){
+                set_pressed(false);
                 action_listener();
-
             }
+    };
 
-        }
-    };
-    void update() override{
-        if(is_pressed){
-            if(button_temp--==0){
-                SDL_Color bg_color = get_background_color();
-                is_pressed = false;
-                set_background(SDL_Color_dsp(bg_color,30));
-            }
-        }
-    };
+    void update() override{};
 
     void draw(SDL_Renderer *ren) override{draw_CUI(ren);};
 
@@ -67,5 +52,13 @@ public:
     void set_action_listener(std::function<void(void)> function_t ){
         action_listener = function_t;
     };
+    
+    void set_pressed(bool pressed_t){
+        if(pressed_t==pressed) return;
+
+        set_background(SDL_Color_dsp(get_background_color(),
+                                     (pressed_t) ? -30 : 30));
+        pressed = !pressed;
+    }
 };
 #endif //WINDOW_MANAGER_CABSTRACTBUTTON_H

@@ -7,7 +7,7 @@
 
 #include <CComponent.h>
 
-class CName : public WindowComponent{
+class CName : public CComponent{
 private:
 
     // Component Metadata
@@ -24,6 +24,8 @@ public:
     void input() override {};
     void update() override {};
     void draw(SDL_Renderer* ren) override {};
+
+    void update_layout() override{};
 };
 
 #endif //DEUBER_COMPONENT_TEMPLATE_H

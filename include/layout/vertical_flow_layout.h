@@ -14,7 +14,7 @@ private:
 public:
     VerticalFlowLayout();
     VerticalFlowLayout(int v_gap) : WindowLayout(),v_gap{v_gap},h_margin{10}{};
-    void set_size(std::vector<CComponent*> component_list, SDL_Rect *coords) override;
+    void set_size(std::vector<CComponent*> component_list, CComponent* parent_panel) override;
 };
 
 

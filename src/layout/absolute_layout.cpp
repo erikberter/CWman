@@ -4,6 +4,6 @@
 
 #include "layout/absolute_layout.h"
 
-void AbsoluteLayout::set_size(std::vector<CComponent*> component_list, SDL_Rect *coords){
+void AbsoluteLayout::set_size(std::vector<CComponent*> component_list, CComponent* parent_panel){
     return;
 }

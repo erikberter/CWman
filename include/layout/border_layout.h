@@ -16,6 +16,6 @@ public:
         NORTH,SOUTH,EAST,WEST,CENTER
     };
     BorderLayout();
-    void set_size(std::vector<CComponent*> component_list, SDL_Rect *coords) override;
+    void set_size(std::vector<CComponent*> component_list, CComponent* parent_panel) override;
 };
 #endif //WINDOWMANAGER_BORDER_LAYOUT_H

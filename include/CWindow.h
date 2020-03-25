@@ -13,7 +13,7 @@
 #include "component/CPanel.h"
 #include <string>
 
-const unsigned short WINDOW_FPS = 20;
+const unsigned short WINDOW_FPS = 60;
 constexpr unsigned short WINDOW_FPS_DELAY = 1000/WINDOW_FPS;
 
 class CWindow{
@@ -58,6 +58,10 @@ public:
 
     void set_layout(WindowLayout* layout);
     void add(CComponent* component);
+
+    CComponent* get_component_by_id(std::string id){
+        return window_panel->get_component_by_id(id);
+    };
 };
 
 #endif //WINDOWMANAGER_WINDOW_HANDLER_H

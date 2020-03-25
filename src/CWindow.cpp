@@ -25,6 +25,7 @@ void CWindow::set_defaults(){
     w_title = "Default Window";
     window_panel = new CPanel();
     window_panel->set_size(w_height,w_width);
+    window_panel->set_resizable(false);
 }
 
 void CWindow::init_window(){
@@ -38,6 +39,7 @@ void CWindow::init_SDL(int SDL_flags){
     SDL_Init(0);
     SDL_CreateWindowAndRenderer(w_width, w_height, SDL_flags, &win, &ren);
     SDL_SetWindowTitle(win, w_title.c_str());
+    SDL_StartTextInput();
     if(TTF_Init() < 0)
         std::cout << "Error:" << TTF_GetError() << std::endl;
 }
