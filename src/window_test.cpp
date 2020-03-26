@@ -6,6 +6,7 @@
 
 #include <CWindow.h>
 #include <component/CTextBox.h>
+#include <component/CToggleButton.h>
 #include "component/CButton.h"
 #include "component/CLabel.h"
 
@@ -15,6 +16,8 @@ int main(){
     CPanel *g_pan = new CPanel();
     g_pan->set_background({0,255,0,0});
     CTextBox *xtb = new CTextBox();
+    CToggleButton *tbl = new CToggleButton("Toglg");
+    tbl->set_id("tbl");
     xtb->set_size({300,40});
     xtb->set_id("txt");
     pan->add(xtb);
@@ -23,11 +26,18 @@ int main(){
     CButton *but = new CButton("Prueba2");
     but->set_action_listener([]() {
         CComponent *textbox =  win.get_component_by_id("txt");
-        if(textbox== nullptr) std::cout << "No se ha encontrado" << std::endl;
-        else std::cout << "El valor es :" << static_cast<CTextBox*>(textbox)->get_text() << std::endl;
+        CComponent *tbl =  win.get_component_by_id("tbl ");
+        if(textbox== nullptr || tbl == nullptr) std::cout << "No se ha encontrado" << std::endl;
+        {
+            if(dynamic_cast<CToggleButton*>(tbl)->get_state())
+                std::cout << "El valor es :" << dynamic_cast<CTextBox*>(textbox)->get_text() << std::endl;
+            else std::cout << "Apretao" << std::endl;
+
+
+        }
     });
     g_pan->add(but);
-
+    g_pan->add(tbl);
     g_pan->add(pan);
     win.add(g_pan);
     win.init_window();
