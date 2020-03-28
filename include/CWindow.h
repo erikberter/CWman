@@ -41,7 +41,7 @@ private:
     void window_render();
 
     void set_defaults();
-    void init_SDL(int SDL_flags);
+
 public:
     static int window_id;
 
@@ -49,6 +49,7 @@ public:
     CWindow(std::string w_title_t);
     ~CWindow();
 
+    void init_SDL(int SDL_flags);
     void set_size(int w,int h){
         w_width = w;
         w_height = h;

@@ -12,6 +12,7 @@
 
 int main(){
     static CWindow win;
+    win.init_SDL(0);
     CPanel *pan = new CPanel();
     CPanel *g_pan = new CPanel();
     g_pan->set_background({0,255,0,0});
@@ -26,7 +27,7 @@ int main(){
     CButton *but = new CButton("Prueba2");
     but->set_action_listener([]() {
         CComponent *textbox =  win.get_component_by_id("txt");
-        CComponent *tbl =  win.get_component_by_id("tbl ");
+        CComponent *tbl =  win.get_component_by_id("tbl");
         if(textbox== nullptr || tbl == nullptr) std::cout << "No se ha encontrado" << std::endl;
         {
             if(dynamic_cast<CToggleButton*>(tbl)->get_state())

@@ -30,7 +30,6 @@ void CWindow::set_defaults(){
 
 void CWindow::init_window(){
     w_active = true;
-    init_SDL(0);
     run_window();
 }
 
