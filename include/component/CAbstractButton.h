@@ -11,6 +11,7 @@
 #include <functional>
 #include <algorithm>
 #include <utils/colors.h>
+#include <utils/collision.h>
 
 class CAbstractButton : public CComponent{
 private:

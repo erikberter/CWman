@@ -9,10 +9,12 @@
 #include <component/CToggleButton.h>
 #include "component/CButton.h"
 #include "component/CLabel.h"
+#include "SDL.h"
+
 
 int main(){
     static CWindow win;
-    win.init_SDL(0);
+    win.set_layout(new BorderLayout());
     CPanel *pan = new CPanel();
     CPanel *g_pan = new CPanel();
     g_pan->set_background({0,255,0,0});
@@ -40,6 +42,9 @@ int main(){
     g_pan->add(but);
     g_pan->add(tbl);
     g_pan->add(pan);
-    win.add(g_pan);
+    CButton *but3 = new CButton("Pr33ueba2");
+    win.add(g_pan, BorderLayout::BLPosition::EAST);
+    win.add(but3, BorderLayout::BLPosition::WEST);
     win.init_window();
 }
+

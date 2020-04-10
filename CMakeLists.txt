@@ -7,7 +7,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 add_subdirectory(lib)
 
 file(GLOB_RECURSE WINDOW_MANAGER_SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp)
-add_executable(${PROJECT_NAME} ${WINDOW_MANAGER_SOURCES} include/CBorder.h include/CUI.h include/CDimension.h include/component/CAbstractButton.h include/CFont.h include/utils/colors.h include/component/CTextBox.h include/utils/collision.h include/utils/keyboard.h include/component/CToggleButton.h)
+add_executable(${PROJECT_NAME} ${WINDOW_MANAGER_SOURCES} )
 
 add_dependencies(${PROJECT_NAME} SDL2)
 target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
