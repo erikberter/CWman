@@ -5,7 +5,7 @@
 #ifndef WINDOWMANAGER_ABSOLUTE_LAYOUT_H
 #define WINDOWMANAGER_ABSOLUTE_LAYOUT_H
 
-#include "window_layout.h"
+#include "WindowLayout.h"
 
 class AbsoluteLayout : public WindowLayout{
 

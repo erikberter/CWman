@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "layout/border_layout.h"
+#include "layout/BorderLayout.h"
 #include <algorithm>
 
 BorderLayout::BorderLayout(){

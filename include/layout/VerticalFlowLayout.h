@@ -1,11 +1,7 @@
-//
-// Created by erikberter on 21/03/2020.
-//
-
 #ifndef WINDOWMANAGER_VERTICAL_FLOW_LAYOUT_H
 #define WINDOWMANAGER_VERTICAL_FLOW_LAYOUT_H
 
-#include "window_layout.h"
+#include "WindowLayout.h"
 
 class VerticalFlowLayout : public WindowLayout {
 private:

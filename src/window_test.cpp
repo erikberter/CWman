@@ -1,7 +1,3 @@
-//
-// Created by whiwho on 24/03/2020.
-//
-
 #define SDL_MAIN_HANDLED
 
 #include <CWindow.h>
@@ -12,17 +8,17 @@
 #include "component/CLabel.h"
 
 #include <string>
+#include <layout/FlowLayout.h>
 
 int main(){
     CWindow win;
     CPanel *pan = new CPanel();
-    CScrollPanel *sp = new CScrollPanel();
-    sp->set_size({500,500});
+    FlowLayout *flow = new FlowLayout();
+    pan->set_layout(flow);
     for(int i = 0; i < 20; i++){
         pan->add(new CButton("Button " + std::to_string(i)));
     }
-    sp->set_panel(pan);
-    win.add(sp);
+    win.add(pan);
     win.init_window();
     win.~CWindow();
 }

@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "layout/vertical_flow_layout.h"
+#include "layout/VerticalFlowLayout.h"
 #include <algorithm>
 
 VerticalFlowLayout::VerticalFlowLayout(){
@@ -20,7 +20,6 @@ void VerticalFlowLayout::set_size(std::vector<CComponent*> component_list, CComp
     int act_height = 0;
 
     for(auto& c : component_list){
-        //std::cout << c->get_id() << std::endl;
         act_pos.y +=v_gap;
 
         c->set_pos(act_pos);

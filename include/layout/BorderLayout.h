@@ -5,7 +5,7 @@
 #ifndef WINDOWMANAGER_BORDER_LAYOUT_H
 #define WINDOWMANAGER_BORDER_LAYOUT_H
 
-#include "window_layout.h"
+#include "WindowLayout.h"
 #include "CComponent.h"
 class BorderLayout : public WindowLayout {
 private:

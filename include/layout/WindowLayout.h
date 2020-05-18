@@ -13,7 +13,7 @@ class WindowLayout{
 private:
 public:
     enum LayoutType{
-        NONE, BORDER, ABSOLUTE, VERTICAL_FLOW, SCROLLBAR
+        NONE, BORDER, ABSOLUTE, VERTICAL_FLOW, FLOW, SCROLLBAR
     };
     LayoutType layout_type = NONE;
     void change_layout(LayoutType layout_type_t){

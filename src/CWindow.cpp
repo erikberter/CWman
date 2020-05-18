@@ -7,6 +7,7 @@
 #include <iostream>
 #include <CMouse.h>
 
+unsigned int CWindowData::n_window = 0;
 int CWindow::window_id = 1;
 
 CWindow::CWindow(){
@@ -20,6 +21,8 @@ CWindow::CWindow(std::string w_title_t){
 }
 
 void CWindow::set_defaults(){
+    CWindowData::n_window++;
+
     w_height = 600;
     w_width = 800;
     w_id = window_id++;
@@ -48,10 +51,19 @@ void CWindow::init_SDL(int SDL_flags){
 }
 CWindow::~CWindow(){
     window_panel->~CPanel();
-    SDL_DestroyRenderer(ren);
     SDL_DestroyWindow(win);
-    SDL_QuitSubSystem(SDL_INIT_VIDEO|SDL_INIT_EVENTS);
-    SDL_Quit();
+
+    if(CWindowData::n_window-- == 1){
+        SDL_DestroyRenderer(ren);
+        SDL_QuitSubSystem(SDL_INIT_VIDEO|SDL_INIT_EVENTS);
+        SDL_Quit();
+    }
+
+
+}
+
+void CWindow::dispose(){
+    w_active = false;
 }
 
 void CWindow::run_window(){
