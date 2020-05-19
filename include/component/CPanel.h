@@ -86,6 +86,10 @@ public:
         }
         return nullptr;
     };
+
+    void clear(){
+        component_list.clear();
+    }
 };
 
 #endif //WINDOWMANAGER_PANEL_COMPONENT_H

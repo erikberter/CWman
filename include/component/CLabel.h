@@ -16,13 +16,9 @@
 
 class CLabel : public CComponent {
 private:
-
-    // Component Metadata
     CFont font;
-    // Component Values
     std::string lbl_tex;
 
-    // Component Render
 public:
     CLabel() : CComponent(),lbl_tex{""}{set_default();};
     CLabel(std::string lbl_text_t) : CComponent(), lbl_tex{std::move(lbl_text_t)}{set_default();};
@@ -54,6 +50,11 @@ public:
         draw_CUI(ren);
     };
     virtual void update_layout(){};
+
+    void set_text(const std::string& text){
+        set_drawn(false);
+        lbl_tex = text;
+    }
 };
 
 #endif //DEUBER_COMPONENT_LABEL_H
