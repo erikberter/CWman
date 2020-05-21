@@ -3,21 +3,27 @@
 #include <CWindow.h>
 #include <component/CTextBox.h>
 #include <component/CScrollPanel.h>
-#include <component/CBar.h>
+#include <component/CTextBox.h>
 #include "component/CButton.h"
 #include "component/CLabel.h"
 
 #include <string>
-#include <layout/FlowLayout.h>
+#include <layout/VerticalFlowLayout.h>
 
 int main(){
     CWindow win;
     CPanel *pan = new CPanel();
-    FlowLayout *flow = new FlowLayout();
+    VerticalFlowLayout *flow = new VerticalFlowLayout();
     pan->set_layout(flow);
-    for(int i = 0; i < 20; i++){
-        pan->add(new CButton("Button " + std::to_string(i)));
-    }
+    CButton *lbl1 = new CButton("Bn");
+    lbl1->set_size({300,50});
+    CLabel *lbl2 = new CLabel("Bnasd");
+    lbl2->set_size({300,50});
+    CTextBox *lbl3 = new CTextBox();
+    lbl3->set_size({300,50});
+    pan->add(lbl1);
+    pan->add(lbl2);
+    pan->add(lbl3);
     win.add(pan);
     win.init_window();
     win.~CWindow();
