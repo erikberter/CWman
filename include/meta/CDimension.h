@@ -11,10 +11,6 @@ struct Dimension{
     int w, h;
 };
 
-
-static SDL_Rect d_to_R(Position p, Dimension d){
-    SDL_Rect a = {p.x,p.y,d.w,d.h};
-    return a;
-}
+extern SDL_Rect d_to_R(Position p, Dimension d);
 
 #endif //WINDOW_MANAGER_CDIMENSION_H

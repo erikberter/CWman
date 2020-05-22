@@ -1,13 +1,11 @@
-//
-// Created by whiwho on 24/03/2020.
-//
-
 #ifndef WINDOW_MANAGER_CBORDER_H
 #define WINDOW_MANAGER_CBORDER_H
 
 #include <SDL_pixels.h>
 
 #include "utils/colors.h"
+
+const int MAX_BORDER_SIZE = 10;
 
 class CBorder{
 private:
@@ -31,13 +29,10 @@ public:
     }
     void set_border(int border_size_t, SDL_Color border_color_t){
         border_size = border_size_t;
-        border_color;
+        border_color = border_color_t;
     }
-    /**
-     * Sets the border size. The range of the border is [0,10].
-     * @param border_size_t Integer representing the size.
-     */
-    void set_size(int border_size_t){border_size = std::max(0, std::min(10, border_size_t));};
+
+    void set_size(int border_size_t){border_size = std::max(0, std::min(MAX_BORDER_SIZE, border_size_t));};
     int get_size(){return border_size;};
 
     void set_color(SDL_Color border_color_t){border_color = border_color_t;}
