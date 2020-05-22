@@ -39,7 +39,7 @@ public:
             SDL_SetRenderTarget(ren, view);
             panel->draw(ren);
             SDL_SetRenderTarget(ren, nullptr);
-            act_pos = bar->get_percentaje()*(static_cast<float>(panel->get_dst()->h-get_dst()->h));
+            act_pos = bar->get_percentage()*(static_cast<float>(panel->get_dst()->h-get_dst()->h));
             SDL_Rect view_src = {0, static_cast<int>(act_pos), get_dst()->w-bar->get_size().w, get_dst()->h};
             SDL_Rect view_dst = {0, 0, get_dst()->w-bar->get_size().w, get_dst()->h};
             SDL_RenderCopy(ren, view, &view_src, &view_dst);
@@ -51,6 +51,7 @@ public:
         panel->update_layout();
         set_size({panel->get_size().w+bar->get_size().w,get_dst()->h});
         bar->set_pos({panel->get_size().w,0});
+        bar->set_drawn(false);
         bar->set_size({bar->get_size().w,get_dst()->h});
     };
 

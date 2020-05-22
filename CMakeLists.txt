@@ -7,7 +7,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/bin")
 add_subdirectory(lib)
 
 file(GLOB_RECURSE WINDOW_MANAGER_SOURCES ${CMAKE_CURRENT_LIST_DIR}/src/*.cpp)
-add_executable(${PROJECT_NAME} ${WINDOW_MANAGER_SOURCES} include/layout/FlowLayout.h src/layout/FlowLayout.cpp include/utils/SDL2_conv.h include/meta/CTextProperties.h src/meta/CTextProperties.cpp src/meta/CDimension.cpp)
+add_executable(${PROJECT_NAME} ${WINDOW_MANAGER_SOURCES} )
 
 add_dependencies(${PROJECT_NAME} SDL2)
 target_include_directories( ${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include)
